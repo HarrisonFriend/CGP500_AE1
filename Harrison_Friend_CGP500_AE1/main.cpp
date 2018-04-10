@@ -27,10 +27,10 @@ int main()
 	m->LoadTextureFile("snowman.bmp"); //try different test images, font.bmp, test.bmp
 
 	//						POSITION				COLOUR				UV
-	m->AddVertex(Vertex(-0.5f, -0.5f, 0.0f,   0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
-	m->AddVertex(Vertex( 0.5f, -0.5f, 0.0f,   0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
-	m->AddVertex(Vertex(-0.5f,  0.5f, 0.0f,   0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
-	m->AddVertex(Vertex( 0.5f,  0.5f, 0.0f,   1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+	m->AddVertex(Vertex(-0.1f, -0.1f, 0.0f,   0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	m->AddVertex(Vertex( 0.1f, -0.1f, 0.0f,   0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	m->AddVertex(Vertex(-0.1f,  0.1f, 0.0f,   0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	m->AddVertex(Vertex( 0.1f,  0.1f, 0.0f,   1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
 
 	//triangle 1
 	m->AddIndex(0, 1, 2);

@@ -1,20 +1,2 @@
-﻿  renderer.cpp
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(436,8): warning : 'setShaderType' is deprecated: This function is no longer necessary and will be removed in the next release. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnmx/gfxcontext_methods.h(31,6) :  note: 'setShaderType' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(469,8): warning : 'setShaderType' is deprecated: This function is no longer necessary and will be removed in the next release. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnmx/gfxcontext_methods.h(31,6) :  note: 'setShaderType' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(526,8): warning : 'setShaderType' is deprecated: This function is no longer necessary and will be removed in the next release. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnmx/gfxcontext_methods.h(31,6) :  note: 'setShaderType' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(709,12): warning : 'initAs2d' is deprecated: API has changed. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnm/texture.h(188,14) :  note: 'initAs2d' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(890,9): warning : 'generateVsFetchShader' is deprecated: please ensure instancingData is indexed by VertexInputSemantic::m_semantic and supply numElementsInInstancingData [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnmx/fetchshaderhelper.h(75,8) :  note: 'generateVsFetchShader' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(958,22): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gpu_address.h(314,34) :  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(966,62): warning : 'init' is deprecated: API has changed. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnm/rendertarget.h(141,14) :  note: 'init' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(1011,21): warning : 'computeSurfaceTileMode' is deprecated: API has changed. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gpu_address.h(314,34) :  note: 'computeSurfaceTileMode' has been explicitly marked deprecated here
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\renderer.cpp(1020,53): warning : 'init' is deprecated: API has changed. [-Wdeprecated-declarations]
-  C:\Program Files (x86)\SCE\ORBIS SDKs\4.000\target\include_common\gnm/depthrendertarget.h(122,14) :  note: 'init' has been explicitly marked deprecated here
+﻿  main.cpp
   Harrison_Friend_CGP500_AE1.vcxproj -> U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\ORBIS_Debug\Harrison_Friend_CGP500_AE1.elf
