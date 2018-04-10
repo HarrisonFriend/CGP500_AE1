@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Harrison_Friend_CGP500_AE1", "Harrison_Friend_CGP500_AE1.vcxproj", "{29032D9F-B1F5-4A93-AB1E-1FD7381DDE1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ORBIS = Debug|ORBIS
+		Release|ORBIS = Release|ORBIS
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29032D9F-B1F5-4A93-AB1E-1FD7381DDE1D}.Debug|ORBIS.ActiveCfg = Debug|ORBIS
+		{29032D9F-B1F5-4A93-AB1E-1FD7381DDE1D}.Debug|ORBIS.Build.0 = Debug|ORBIS
+		{29032D9F-B1F5-4A93-AB1E-1FD7381DDE1D}.Release|ORBIS.ActiveCfg = Release|ORBIS
+		{29032D9F-B1F5-4A93-AB1E-1FD7381DDE1D}.Release|ORBIS.Build.0 = Release|ORBIS
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
