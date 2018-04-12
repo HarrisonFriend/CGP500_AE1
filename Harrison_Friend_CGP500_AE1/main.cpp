@@ -14,8 +14,6 @@ int main()
 	//initialize/setup
 	renderer.Create();
 
-	//********** reading controller input **********
-
 	int32_t ret = sceUserServiceInitialize(NULL);
 	if (ret != 0) printf("sceUserServiceInitialize failed\n");
 
@@ -43,13 +41,13 @@ int main()
 	Mesh* m = renderer.CreateMesh();
 
 	//load texture for triangles
-	m->LoadTextureFile("snowman.bmp"); //try different test images, font.bmp, test.bmp
+	m->LoadTextureFile("snowman.bmp");
 
 	//						POSITION				COLOUR				UV
-	m->AddVertex(Vertex(-0.1f, -0.1f, 0.0f, 0.7f, 0.7f, 1.0f, 0.0f, 0.0f));
-	m->AddVertex(Vertex(0.1f, -0.1f, 0.0f, 0.7f, 0.7f, 1.0f, 1.0f, 0.0f));
-	m->AddVertex(Vertex(-0.1f, 0.1f, 0.0f, 0.7f, 1.0f, 1.0f, 0.0f, 1.0f));
-	m->AddVertex(Vertex(0.1f, 0.1f, 0.0f, 1.0f, 0.7f, 1.0f, 1.0f, 1.0f));
+	m->AddVertex(Vertex(-0.1f, -0.1f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	m->AddVertex(Vertex( 0.1f, -0.1f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	m->AddVertex(Vertex(-0.1f,  0.1f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	m->AddVertex(Vertex( 0.1f,  0.1f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
 
 	//triangle 1
 	m->AddIndex(0, 1, 2);
@@ -73,7 +71,32 @@ int main()
 			//if data is obtained from the controller
 			if (ret == 0)
 			{
-				//if the user presses the circle button exit
+				//move left
+				if (data.buttons & SCE_PAD_BUTTON_LEFT)
+				{
+					m->translation.setX(m->translation.getX() - 0.005f);
+				}
+				//move right
+				if (data.buttons & SCE_PAD_BUTTON_RIGHT)
+				{
+					m->translation.setX(m->translation.getX() + 0.005f);
+				}
+				//move up
+				if (data.buttons & SCE_PAD_BUTTON_UP)
+				{
+					m->translation.setY(m->translation.getY() + 0.005f);
+				}
+				//move down
+				if (data.buttons & SCE_PAD_BUTTON_DOWN)
+				{
+					m->translation.setY(m->translation.getY() - 0.005f);
+				}
+				//pause game
+				if (data.buttons & SCE_PAD_BUTTON_START)
+				{
+					
+				}
+				//exit game
 				if (data.buttons & SCE_PAD_BUTTON_CIRCLE)
 				{
 					break;
@@ -89,7 +112,6 @@ int main()
 
 		//tidy up before exiting
 		renderer.Release();
-
-		return 0;
 	}
+	return 0;
 }
