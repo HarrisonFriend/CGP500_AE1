@@ -1,5 +1,8 @@
 //include header files for our PS4 renderer class
 #include "renderer.h"
+#include <kernel.h>
+#include <user_service.h>
+#include <pad.h>
 using namespace Solent;
 
 //program entry point
@@ -10,6 +13,22 @@ int main()
 
 	//initialize/setup
 	renderer.Create();
+
+	//********** reading controller input **********
+
+	int32_t ret = sceUserServiceInitialize(NULL);
+	if (ret != 0) printf("sceUserServiceInitialize failed\n");
+
+	SceUserServiceUserId userId;
+	ret = sceUserServiceGetInitialUser(&userId);
+	if (ret != 0) printf("sceUserServiceGetInitialiser failed\n");
+
+	ret = scePadInit();
+	if (ret != 0) printf("scePadInit failed\n");
+
+	//example that specifies SCE_PAD_PORT_TYPE_STANDARD controller type
+	int32_t handle = scePadOpen(userId, SCE_PAD_PORT_TYPE_STANDARD, 0, NULL);
+	if (handle < 0) printf("scePadOpen failed\n");
 
 	//simple quad
 	//2    3
@@ -27,10 +46,10 @@ int main()
 	m->LoadTextureFile("snowman.bmp"); //try different test images, font.bmp, test.bmp
 
 	//						POSITION				COLOUR				UV
-	m->AddVertex(Vertex(-0.1f, -0.1f, 0.0f,   0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
-	m->AddVertex(Vertex( 0.1f, -0.1f, 0.0f,   0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
-	m->AddVertex(Vertex(-0.1f,  0.1f, 0.0f,   0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
-	m->AddVertex(Vertex( 0.1f,  0.1f, 0.0f,   1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+	m->AddVertex(Vertex(-0.1f, -0.1f, 0.0f, 0.7f, 0.7f, 1.0f, 0.0f, 0.0f));
+	m->AddVertex(Vertex(0.1f, -0.1f, 0.0f, 0.7f, 0.7f, 1.0f, 1.0f, 0.0f));
+	m->AddVertex(Vertex(-0.1f, 0.1f, 0.0f, 0.7f, 1.0f, 1.0f, 0.0f, 1.0f));
+	m->AddVertex(Vertex(0.1f, 0.1f, 0.0f, 1.0f, 0.7f, 1.0f, 1.0f, 1.0f));
 
 	//triangle 1
 	m->AddIndex(0, 1, 2);
@@ -44,9 +63,33 @@ int main()
 	//start drawing the triangles for 1000 frames then exit
 	for (uint32_t frameIndex = 0; frameIndex < 1000; ++frameIndex)
 	{
-		renderer.RenderLoop();
-	}
+		while (true)
+		{
+			// Get the data for an individual controller
+			ScePadData data;
+			//obtain state of controller data
+			ret = scePadReadState(handle, &data);
 
-	//tidy up before exiting
-	renderer.Release();
+			//if data is obtained from the controller
+			if (ret == 0)
+			{
+				//if the user presses the circle button exit
+				if (data.buttons & SCE_PAD_BUTTON_CIRCLE)
+				{
+					break;
+				}
+			}
+			//small delay
+			sceKernelUsleep(100); //wait here for 100 us
+			renderer.RenderLoop();
+		}
+
+		//tidy up and release handle
+		scePadClose(handle);
+
+		//tidy up before exiting
+		renderer.Release();
+
+		return 0;
+	}
 }
