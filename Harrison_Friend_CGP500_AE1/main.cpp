@@ -14,6 +14,8 @@ int main()
 	//initialize/setup
 	renderer.Create();
 
+	bool gamePaused = false;
+
 	int32_t ret = sceUserServiceInitialize(NULL);
 	if (ret != 0) printf("sceUserServiceInitialize failed\n");
 
@@ -74,7 +76,10 @@ int main()
 				//move left
 				if (data.buttons & SCE_PAD_BUTTON_LEFT)
 				{
-					m->translation.setX(m->translation.getX() - 0.005f);
+					if (m->translation.getX > -1.0f)
+					{
+						m->translation.setX(m->translation.getX() - 0.005f);
+					}
 				}
 				//move right
 				if (data.buttons & SCE_PAD_BUTTON_RIGHT)
@@ -94,7 +99,11 @@ int main()
 				//pause game
 				if (data.buttons & SCE_PAD_BUTTON_START)
 				{
-					
+					gamePaused = true;
+					while (gamePaused == true)
+					{
+
+					}
 				}
 				//exit game
 				if (data.buttons & SCE_PAD_BUTTON_CIRCLE)
