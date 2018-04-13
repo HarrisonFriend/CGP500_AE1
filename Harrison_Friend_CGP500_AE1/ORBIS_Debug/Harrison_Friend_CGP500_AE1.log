@@ -1,2 +1,7 @@
 ﻿  main.cpp
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(67,8): warning : unused variable 'playerPositionX1' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(70,8): warning : unused variable 'playerPositionX2' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(17,7): warning : unused variable 'gamePaused' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(71,8): warning : unused variable 'playerPositionY2' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(68,8): warning : unused variable 'playerPositionY1' [-Wunused-variable]
   Harrison_Friend_CGP500_AE1.vcxproj -> U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\ORBIS_Debug\Harrison_Friend_CGP500_AE1.elf

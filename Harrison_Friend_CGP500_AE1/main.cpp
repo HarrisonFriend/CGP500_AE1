@@ -42,14 +42,14 @@ int main()
 
 	Mesh* m = renderer.CreateMesh();
 
-	//load texture for triangles
+	//load player image
 	m->LoadTextureFile("snowman.bmp");
 
-	//						POSITION				COLOUR				UV
-	m->AddVertex(Vertex(-0.1f, -0.1f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
-	m->AddVertex(Vertex( 0.1f, -0.1f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
-	m->AddVertex(Vertex(-0.1f,  0.1f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
-	m->AddVertex(Vertex( 0.1f,  0.1f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+	//						 POSITION				 COLOUR				  UV
+	m->AddVertex(Vertex(-0.95f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	m->AddVertex(Vertex(-0.85f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	m->AddVertex(Vertex(-0.95f,  0.05f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	m->AddVertex(Vertex(-0.85f,  0.05f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
 
 	//triangle 1
 	m->AddIndex(0, 1, 2);
@@ -59,6 +59,16 @@ int main()
 
 	//create buffers for renderer
 	m->BuildTriangleBuffer();
+
+	//collision code
+	float playerWidth = 0.1f;
+	float playerHeight = 0.1f;
+
+	float playerPositionX1 = m->translation.getX();
+	float playerPositionY1 = m->translation.getY();
+
+	float playerPositionX2 = m->translation.getX() + playerWidth;
+	float playerPositionY2 = m->translation.getY() + playerHeight;
 
 	//start drawing the triangles for 1000 frames then exit
 	for (uint32_t frameIndex = 0; frameIndex < 1000; ++frameIndex)
@@ -76,43 +86,56 @@ int main()
 				//move left
 				if (data.buttons & SCE_PAD_BUTTON_LEFT)
 				{
-					if (m->translation.getX > -1.0f)
+					//check player doesn't go off screen
+					if (m->translation.getX() > -1.0f)
 					{
-						m->translation.setX(m->translation.getX() - 0.005f);
+						m->translation.setX(m->translation.getX() - 0.003f);
 					}
 				}
 				//move right
 				if (data.buttons & SCE_PAD_BUTTON_RIGHT)
 				{
-					m->translation.setX(m->translation.getX() + 0.005f);
+					//check player doesn't go off screen
+					if (m->translation.getX() < 1.0f)
+					{
+						m->translation.setX(m->translation.getX() + 0.003f);
+					}
 				}
 				//move up
 				if (data.buttons & SCE_PAD_BUTTON_UP)
 				{
-					m->translation.setY(m->translation.getY() + 0.005f);
+					//check player doesn't go off screen
+					if (m->translation.getY() < 1.0f)
+					{
+						m->translation.setY(m->translation.getY() + 0.003f);
+					}
 				}
 				//move down
 				if (data.buttons & SCE_PAD_BUTTON_DOWN)
 				{
-					m->translation.setY(m->translation.getY() - 0.005f);
+					//check player doesn't go off screen
+					if (m->translation.getY() > -1.0f)
+					{
+						m->translation.setY(m->translation.getY() - 0.003f);
+					}
 				}
 				//pause game
 				if (data.buttons & SCE_PAD_BUTTON_START)
 				{
-					gamePaused = true;
+					/*gamePaused = true;
 					while (gamePaused == true)
 					{
 
-					}
+					}*/
 				}
 				//exit game
 				if (data.buttons & SCE_PAD_BUTTON_CIRCLE)
 				{
-					break;
+					return 0;
 				}
 			}
 			//small delay
-			sceKernelUsleep(100); //wait here for 100 us
+			//sceKernelUsleep(100); //wait here for 100 us
 			renderer.RenderLoop();
 		}
 
