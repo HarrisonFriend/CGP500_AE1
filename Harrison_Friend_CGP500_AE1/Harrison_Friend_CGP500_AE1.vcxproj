@@ -53,7 +53,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>-lSceGpuAddress;-lSceGnmx;-lSceGnm;-lSceGnmDriver_stub_weak;-lSceVideoOut_stub_weak;-lSceFont_stub_weak;-lSceSysmodule_stub_weak;-lSceCes;-lSceUserService_stub_weak;-lScePad_stub_weak;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>-lSceGpuAddress;-lSceGnmx;-lSceGnm;-lSceGnmDriver_stub_weak;-lSceVideoOut_stub_weak;-lSceFont_stub_weak;-lSceSysmodule_stub_weak;-lSceCes;-lSceUserService_stub_weak;-lScePad_stub_weak;-lSceFontFt_stub_weak;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ORBIS'">
@@ -66,9 +66,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="text.h" />
   </ItemGroup>
   <ItemGroup>
     <OrbisWavePsslc Include="my_cs_set_uint_c.pssl" />

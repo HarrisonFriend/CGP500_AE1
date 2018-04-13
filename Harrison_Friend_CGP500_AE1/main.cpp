@@ -1,4 +1,5 @@
 //include header files for our PS4 renderer class
+#include "text.h"
 #include "renderer.h"
 #include <kernel.h>
 #include <user_service.h>
@@ -14,7 +15,7 @@ int main()
 	//initialize/setup
 	renderer.Create();
 
-	bool gamePaused = false;
+	//bool gamePaused = false;
 
 	int32_t ret = sceUserServiceInitialize(NULL);
 	if (ret != 0) printf("sceUserServiceInitialize failed\n");
@@ -30,6 +31,8 @@ int main()
 	int32_t handle = scePadOpen(userId, SCE_PAD_PORT_TYPE_STANDARD, 0, NULL);
 	if (handle < 0) printf("scePadOpen failed\n");
 
+	//text.drawTextOnScreen();
+
 	//simple quad
 	//2    3
 	//+----+
@@ -40,35 +43,64 @@ int main()
 	//+----+
 	//0    1
 
-	Mesh* m = renderer.CreateMesh();
+
+	//PLAYER MESH CODE
+	Mesh* playerMesh = renderer.CreateMesh();
 
 	//load player image
-	m->LoadTextureFile("snowman.bmp");
+	playerMesh->LoadTextureFile("snowman.bmp");
 
-	//						 POSITION				 COLOUR				  UV
-	m->AddVertex(Vertex(-0.95f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
-	m->AddVertex(Vertex(-0.85f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
-	m->AddVertex(Vertex(-0.95f,  0.05f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
-	m->AddVertex(Vertex(-0.85f,  0.05f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+	//						           POSITION				   COLOUR				UV
+	playerMesh->AddVertex(Vertex(-0.95f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	playerMesh->AddVertex(Vertex(-0.85f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	playerMesh->AddVertex(Vertex(-0.95f,  0.05f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	playerMesh->AddVertex(Vertex(-0.85f,  0.05f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
 
 	//triangle 1
-	m->AddIndex(0, 1, 2);
+	playerMesh->AddIndex(0, 1, 2);
 
 	//triangle 2
-	m->AddIndex(1, 3, 2);
+	playerMesh->AddIndex(1, 3, 2);
 
 	//create buffers for renderer
-	m->BuildTriangleBuffer();
+	playerMesh->BuildTriangleBuffer();
 
-	//collision code
+
+
+	//ENEMY MESH CODE
+	Mesh* enemyMesh = renderer.CreateMesh();
+
+	//load enemy image
+	enemyMesh->LoadTextureFile("test.bmp");
+
+	//						 POSITION				 COLOUR				  UV
+	enemyMesh->AddVertex(Vertex(-0.05f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	enemyMesh->AddVertex(Vertex( 0.05f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	enemyMesh->AddVertex(Vertex(-0.05f,  0.05f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	enemyMesh->AddVertex(Vertex( 0.05f,  0.05f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+
+	//triangle 1
+	enemyMesh->AddIndex(0, 1, 2);
+
+	//triangle 2
+	enemyMesh->AddIndex(1, 3, 2);
+
+	//create buffers for renderer
+	enemyMesh->BuildTriangleBuffer();
+
+
+
+	//COLLISION CODE
 	float playerWidth = 0.1f;
 	float playerHeight = 0.1f;
 
-	float playerPositionX1 = m->translation.getX();
-	float playerPositionY1 = m->translation.getY();
+	float playerPositionX1 = playerMesh->translation.getX();
+	float playerPositionY1 = playerMesh->translation.getY();
 
-	float playerPositionX2 = m->translation.getX() + playerWidth;
-	float playerPositionY2 = m->translation.getY() + playerHeight;
+	float playerPositionX2 = playerMesh->translation.getX() + playerWidth;
+	float playerPositionY2 = playerMesh->translation.getY() + playerHeight;
+
+
 
 	//start drawing the triangles for 1000 frames then exit
 	for (uint32_t frameIndex = 0; frameIndex < 1000; ++frameIndex)
@@ -87,36 +119,36 @@ int main()
 				if (data.buttons & SCE_PAD_BUTTON_LEFT)
 				{
 					//check player doesn't go off screen
-					if (m->translation.getX() > -1.0f)
+					if (playerMesh->translation.getX() > -1.0f)
 					{
-						m->translation.setX(m->translation.getX() - 0.003f);
+						playerMesh->translation.setX(playerMesh->translation.getX() - 0.003f);
 					}
 				}
 				//move right
 				if (data.buttons & SCE_PAD_BUTTON_RIGHT)
 				{
 					//check player doesn't go off screen
-					if (m->translation.getX() < 1.0f)
+					if (playerMesh->translation.getX() < 1.0f)
 					{
-						m->translation.setX(m->translation.getX() + 0.003f);
+						playerMesh->translation.setX(playerMesh->translation.getX() + 0.003f);
 					}
 				}
 				//move up
 				if (data.buttons & SCE_PAD_BUTTON_UP)
 				{
 					//check player doesn't go off screen
-					if (m->translation.getY() < 1.0f)
+					if (playerMesh->translation.getY() < 1.0f)
 					{
-						m->translation.setY(m->translation.getY() + 0.003f);
+						playerMesh->translation.setY(playerMesh->translation.getY() + 0.003f);
 					}
 				}
 				//move down
 				if (data.buttons & SCE_PAD_BUTTON_DOWN)
 				{
 					//check player doesn't go off screen
-					if (m->translation.getY() > -1.0f)
+					if (playerMesh->translation.getY() > -1.0f)
 					{
-						m->translation.setY(m->translation.getY() - 0.003f);
+						playerMesh->translation.setY(playerMesh->translation.getY() - 0.003f);
 					}
 				}
 				//pause game

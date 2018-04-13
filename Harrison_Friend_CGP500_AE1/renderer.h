@@ -78,6 +78,16 @@ using namespace sce::Vectormath::Scalar::Aos;
 #include <vector>
 using namespace std;
 
+#include <libdbg.h>       // SCE_BREAK(..)
+
+// Custom assert - if the boolean test fails the
+// code will trigger the debugger to halt
+#define DBG_ASSERT(f) { if (!(f)) { SCE_BREAK(); } }
+
+#define DBG_ASSERT_MSG(f,s,m) { if (!(f)) { printf((s),(m)); SCE_BREAK(); } }
+
+#define DBG_ASSERT_SCE_OK(f,m) { int reta = f; if ((reta)!=SCE_OK) { printf((m),(reta)); SCE_BREAK(); } }
+
 namespace Solent
 {
 
