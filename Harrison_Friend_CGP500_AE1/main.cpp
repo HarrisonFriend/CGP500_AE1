@@ -1,14 +1,19 @@
-//include header files for our PS4 renderer class
+//include header files
 #include "text.h"
 #include "renderer.h"
 #include <kernel.h>
 #include <user_service.h>
 #include <pad.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
 using namespace Solent;
 
 //program entry point
 int main()
 {
+	srand(time(NULL));
+
 	//renderer class
 	Renderer renderer;
 
