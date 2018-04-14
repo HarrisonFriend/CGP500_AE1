@@ -36,7 +36,8 @@ int main()
 	int32_t handle = scePadOpen(userId, SCE_PAD_PORT_TYPE_STANDARD, 0, NULL);
 	if (handle < 0) printf("scePadOpen failed\n");
 
-	//text.drawTextOnScreen();
+	//*****SCORE TEXT ON SCREEN ATTEMPT*****
+	Text drawScoreOnScreen();
 
 	//simple quad
 	//2    3
@@ -49,7 +50,8 @@ int main()
 	//0    1
 
 
-	//PLAYER MESH CODE
+	//PLAYER MESH CODE**********************************************************************
+
 	Mesh* playerMesh = renderer.CreateMesh();
 
 	//load player image
@@ -70,13 +72,14 @@ int main()
 	//create buffers for renderer
 	playerMesh->BuildTriangleBuffer();
 
+	//**************************************************************************************
 
+	//ENEMY MESH CODE***********************************************************************
 
-	//ENEMY MESH CODE
 	Mesh* enemyMesh = renderer.CreateMesh();
 
 	//load enemy image
-	enemyMesh->LoadTextureFile("test.bmp");
+	enemyMesh->LoadTextureFile("font.bmp");
 
 	//						 POSITION				 COLOUR				  UV
 	enemyMesh->AddVertex(Vertex(-0.05f, -0.05f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
@@ -93,9 +96,105 @@ int main()
 	//create buffers for renderer
 	enemyMesh->BuildTriangleBuffer();
 
+	//**************************************************************************************
 
+	//WALL 1 MESH CODE**********************************************************************
 
-	//COLLISION CODE
+	Mesh* wall1Mesh = renderer.CreateMesh();
+
+	//load wall image
+	wall1Mesh->LoadTextureFile("test.bmp");
+
+	//						         POSITION			  COLOUR			   UV
+	wall1Mesh->AddVertex(Vertex(-1.0f, 0.1f,  0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	wall1Mesh->AddVertex(Vertex(-0.5f, 0.1f,  0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	wall1Mesh->AddVertex(Vertex(-1.0f, 0.15f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	wall1Mesh->AddVertex(Vertex(-0.5f, 0.15f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+
+	//triangle 1
+	wall1Mesh->AddIndex(0, 1, 2);
+
+	//triangle 2
+	wall1Mesh->AddIndex(1, 3, 2);
+
+	//create buffers for renderer
+	wall1Mesh->BuildTriangleBuffer();
+
+	//**************************************************************************************
+
+	//WALL 2 MESH CODE**********************************************************************
+
+	Mesh* wall2Mesh = renderer.CreateMesh();
+
+	//load wall image
+	wall2Mesh->LoadTextureFile("test.bmp");
+
+	//						         POSITION			   COLOUR			    UV
+	wall2Mesh->AddVertex(Vertex(-1.0f, -0.15f, 0.0f,   0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	wall2Mesh->AddVertex(Vertex(-0.5f, -0.15f, 0.0f,   0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	wall2Mesh->AddVertex(Vertex(-1.0f, -0.1f,  0.0f,   0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	wall2Mesh->AddVertex(Vertex(-0.5f, -0.1f,  0.0f,   1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+
+	//triangle 1
+	wall2Mesh->AddIndex(0, 1, 2);
+
+	//triangle 2
+	wall2Mesh->AddIndex(1, 3, 2);
+
+	//create buffers for renderer
+	wall2Mesh->BuildTriangleBuffer();
+
+	//**************************************************************************************
+
+	//WALL 3 MESH CODE**********************************************************************
+
+	Mesh* wall3Mesh = renderer.CreateMesh();
+
+	//load wall image
+	wall3Mesh->LoadTextureFile("test.bmp");
+
+	//						         POSITION			   COLOUR			    UV
+	wall3Mesh->AddVertex(Vertex(-0.5f,  0.1f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	wall3Mesh->AddVertex(Vertex(-0.45f, 0.1f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	wall3Mesh->AddVertex(Vertex(-0.5f,  0.8f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	wall3Mesh->AddVertex(Vertex(-0.45f, 0.8f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+
+	//triangle 1
+	wall3Mesh->AddIndex(0, 1, 2);
+
+	//triangle 2
+	wall3Mesh->AddIndex(1, 3, 2);
+
+	//create buffers for renderer
+	wall3Mesh->BuildTriangleBuffer();
+
+	//**************************************************************************************
+
+	//WALL 4 MESH CODE**********************************************************************
+
+	Mesh* wall4Mesh = renderer.CreateMesh();
+
+	//load wall image
+	wall4Mesh->LoadTextureFile("test.bmp");
+
+	//						         POSITION			   COLOUR			     UV
+	wall4Mesh->AddVertex(Vertex(-0.5f,  -0.8f, 0.0f,    0.7f, 0.7f, 1.0f,    0.0f, 0.0f));
+	wall4Mesh->AddVertex(Vertex(-0.45f, -0.8f, 0.0f,    0.7f, 0.7f, 1.0f,    1.0f, 0.0f));
+	wall4Mesh->AddVertex(Vertex(-0.5f,  -0.1f, 0.0f,    0.7f, 1.0f, 1.0f,    0.0f, 1.0f));
+	wall4Mesh->AddVertex(Vertex(-0.45f, -0.1f, 0.0f,    1.0f, 0.7f, 1.0f,    1.0f, 1.0f));
+
+	//triangle 1
+	wall4Mesh->AddIndex(0, 1, 2);
+
+	//triangle 2
+	wall4Mesh->AddIndex(1, 3, 2);
+
+	//create buffers for renderer
+	wall4Mesh->BuildTriangleBuffer();
+
+	//**************************************************************************************
+
+	//COLLISION CODE ATTEMPT
 	float playerWidth = 0.1f;
 	float playerHeight = 0.1f;
 

@@ -187,10 +187,10 @@ void DrawFontTextOnTexture(Gnm::Texture* texture, const char* text)
 	sceSysmoduleUnloadModule(SCE_SYSMODULE_FREETYPE_OT);
 }//end DrawFontTextOnTexture
 
-int Text::drawTextOnScreen()
+int Text::drawScoreOnScreen()
 {
 	//text class
-	Text drawTextOnScreen();
+	Text drawScoreOnScreen();
 
 	//renderer class
 	Renderer renderer;

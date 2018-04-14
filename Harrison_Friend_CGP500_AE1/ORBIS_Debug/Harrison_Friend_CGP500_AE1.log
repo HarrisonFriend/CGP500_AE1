@@ -1,10 +1,8 @@
 ﻿  main.cpp
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(94,8): warning : unused variable 'playerPositionY2' [-Wunused-variable]
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(93,8): warning : unused variable 'playerPositionX2' [-Wunused-variable]
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(91,8): warning : unused variable 'playerPositionY1' [-Wunused-variable]
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(90,8): warning : unused variable 'playerPositionX1' [-Wunused-variable]
-  text.cpp
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\text.cpp(193,23): warning : empty parentheses interpreted as a function declaration [-Wvexing-parse]
-  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\text.cpp(193,23) :  note: remove parentheses to declare a variable
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\text.cpp(229,1): warning : control reaches end of non-void function [-Wreturn-type]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(40,24): warning : empty parentheses interpreted as a function declaration [-Wvexing-parse]
+  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(40,24) :  note: remove parentheses to declare a variable
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(201,8): warning : unused variable 'playerPositionX1' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(202,8): warning : unused variable 'playerPositionY1' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(205,8): warning : unused variable 'playerPositionY2' [-Wunused-variable]
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(204,8): warning : unused variable 'playerPositionX2' [-Wunused-variable]
   Harrison_Friend_CGP500_AE1.vcxproj -> U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\ORBIS_Debug\Harrison_Friend_CGP500_AE1.elf
