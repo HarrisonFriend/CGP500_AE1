@@ -36,7 +36,7 @@ int main()
 	int32_t handle = scePadOpen(userId, SCE_PAD_PORT_TYPE_STANDARD, 0, NULL);
 	if (handle < 0) printf("scePadOpen failed\n");
 
-	//*****SCORE TEXT ON SCREEN ATTEMPT*****
+	//*****SCORE TEXT ON SCREEN*****
 	Text drawScoreOnScreen();
 
 	//simple quad
@@ -194,7 +194,7 @@ int main()
 
 	//**************************************************************************************
 
-	//COLLISION CODE ATTEMPT
+	//COLLISION CODE
 	float playerWidth = 0.1f;
 	float playerHeight = 0.1f;
 
