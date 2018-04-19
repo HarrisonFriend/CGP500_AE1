@@ -7,12 +7,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <thread>
+//#include "playmp3.h"
 using namespace Solent;
+
+////number of threads
+//static const int num_threads = 10;
+//
+////this function will be called from a thread
+//void call_from_thread(int tid)
+//{
+//	while (true)
+//	{
+//		printf("Launched by thread 0x%x \n", tid);
+//		::sceKernelSleep(1);
+//	}
+//}
+
+////#define FILENAME_MP3 "/app0/jungle2ch128kbps.mp3
+//#define FILENAME_MP3 "/app0/allegro.mp3"
 
 //program entry point
 int main()
 {
-	srand(time(NULL));
+	////play .mp3 music file
+	//DecodeAndPlayMp3(FILENAME_MP3);
 
 	//renderer class
 	Renderer renderer;
@@ -35,6 +54,10 @@ int main()
 	//example that specifies SCE_PAD_PORT_TYPE_STANDARD controller type
 	int32_t handle = scePadOpen(userId, SCE_PAD_PORT_TYPE_STANDARD, 0, NULL);
 	if (handle < 0) printf("scePadOpen failed\n");
+
+
+
+	int playerScore = 0;
 
 	//*****SCORE TEXT ON SCREEN*****
 	Text drawScoreOnScreen();
@@ -193,24 +216,50 @@ int main()
 	wall4Mesh->BuildTriangleBuffer();
 
 	//**************************************************************************************
-
 	//COLLISION CODE
+
+	//collision booleans
+	bool xCollision = false;
+	bool yCollision = false;
+	
+	//player mesh width and height
 	float playerWidth = 0.1f;
 	float playerHeight = 0.1f;
 
+	//player x-coordinate for the left of the hitbox
 	float playerPositionX1 = playerMesh->translation.getX();
+	//player y-coordinate for the bottom of the hitbox
 	float playerPositionY1 = playerMesh->translation.getY();
-
+	//player x-coordinate for the right of the hitbox
 	float playerPositionX2 = playerMesh->translation.getX() + playerWidth;
+	//player y-coordinate for the top of the hitbox
 	float playerPositionY2 = playerMesh->translation.getY() + playerHeight;
 
+	//enemy mesh width and height
+	float enemyWidth = 0.1f;
+	float enemyHeight = 0.1f;
 
+	//enemy x-coordinate for the left of the hitbox
+	float enemyPositionX1 = enemyMesh->translation.getX();
+	//enemy y-coordinate for the bottom of the hitbox
+	float enemyPositionY1 = enemyMesh->translation.getY();
+	//enemy x-coordinate for the right of the hitbox
+	float enemyPositionX2 = enemyMesh->translation.getX() + enemyWidth;
+	//enemy y-coordinate for the top of the hitbox
+	float enemyPositionY2 = enemyMesh->translation.getY() + enemyHeight;
+
+	float playerSpeed = 0.003f;
+	float enemySpeed = 0.0025f;
+	int enemyMoveDirection; //8 directions, 1 = up, 2 = up and right, 3 = right etc.
 
 	//start drawing the triangles for 1000 frames then exit
 	for (uint32_t frameIndex = 0; frameIndex < 1000; ++frameIndex)
 	{
 		while (true)
 		{
+			srand(time(0));
+			enemyMoveDirection = (rand() % 8) + 1; //randomise enemy movement direction
+
 			// Get the data for an individual controller
 			ScePadData data;
 			//obtain state of controller data
@@ -225,7 +274,7 @@ int main()
 					//check player doesn't go off screen
 					if (playerMesh->translation.getX() > -1.0f)
 					{
-						playerMesh->translation.setX(playerMesh->translation.getX() - 0.003f);
+						playerMesh->translation.setX(playerMesh->translation.getX() - playerSpeed);
 					}
 				}
 				//move right
@@ -234,7 +283,7 @@ int main()
 					//check player doesn't go off screen
 					if (playerMesh->translation.getX() < 1.0f)
 					{
-						playerMesh->translation.setX(playerMesh->translation.getX() + 0.003f);
+						playerMesh->translation.setX(playerMesh->translation.getX() + playerSpeed);
 					}
 				}
 				//move up
@@ -243,7 +292,7 @@ int main()
 					//check player doesn't go off screen
 					if (playerMesh->translation.getY() < 1.0f)
 					{
-						playerMesh->translation.setY(playerMesh->translation.getY() + 0.003f);
+						playerMesh->translation.setY(playerMesh->translation.getY() + playerSpeed);
 					}
 				}
 				//move down
@@ -252,7 +301,7 @@ int main()
 					//check player doesn't go off screen
 					if (playerMesh->translation.getY() > -1.0f)
 					{
-						playerMesh->translation.setY(playerMesh->translation.getY() - 0.003f);
+						playerMesh->translation.setY(playerMesh->translation.getY() - playerSpeed);
 					}
 				}
 				//pause game
@@ -270,10 +319,124 @@ int main()
 					return 0;
 				}
 			}
+
+			//ENEMY MOVE CODE******************************************************************
+
+			enemyMoveDirection = (rand() % 8) + 1; //randomise enemy movement direction
+			if (enemyMoveDirection == 1) //up
+			{
+				enemyMesh->translation.setY(enemyMesh->translation.getY() + enemySpeed);
+			}
+			else if (enemyMoveDirection == 2) //up-right
+			{
+				enemyMesh->translation.setY(enemyMesh->translation.getY() + enemySpeed);
+				enemyMesh->translation.setX(enemyMesh->translation.getX() + enemySpeed);
+			}
+			else if (enemyMoveDirection == 3) //right
+			{
+				enemyMesh->translation.setX(enemyMesh->translation.getX() + enemySpeed);
+			}
+			else if (enemyMoveDirection == 4) //right-down
+			{
+				enemyMesh->translation.setY(enemyMesh->translation.getY() - enemySpeed);
+				enemyMesh->translation.setX(enemyMesh->translation.getX() + enemySpeed);
+			}
+			else if (enemyMoveDirection == 5) //down
+			{
+				enemyMesh->translation.setY(enemyMesh->translation.getY() - enemySpeed);
+			}
+			else if (enemyMoveDirection == 6) //down-left
+			{
+				enemyMesh->translation.setY(enemyMesh->translation.getY() - enemySpeed);
+				enemyMesh->translation.setX(enemyMesh->translation.getX() - enemySpeed);
+			}
+			else if (enemyMoveDirection == 7) //left
+			{
+				enemyMesh->translation.setX(enemyMesh->translation.getX() - enemySpeed);
+			}
+			else if (enemyMoveDirection == 8) //left-up
+			{
+				enemyMesh->translation.setY(enemyMesh->translation.getY() + enemySpeed);
+				enemyMesh->translation.setX(enemyMesh->translation.getX() - enemySpeed);
+			}
+
+			//player is to the left of the enemy
+			if (enemyPositionX1 - playerPositionX2 < 0.2)
+			{
+				enemyMoveDirection == 3; //right
+			}
+			//player is to the right of the enemy
+			else if (playerPositionX1 - enemyPositionX2 < 0.2)
+			{
+				enemyMoveDirection == 7; //left
+			}
+			//player is above the enemy
+			else if (playerPositionY1 - enemyPositionY2 < 0.2)
+			{
+				enemyMoveDirection == 5; //down
+			}
+			//player is below the enemy
+			else if (enemyPositionY1 - playerPositionY2 < 0.2)
+			{
+				enemyMoveDirection == 1; //up
+			}
+
+			//CHECK FOR COLLISION************************************************************************************
+
+			//check if player collided with enemy, x-axis
+			if ((playerPositionX2 >= enemyPositionX1) && (playerPositionX1 <= enemyPositionX2))
+			{
+				xCollision = true;
+			}
+			//check if player collided with enemy, x-axis part 2
+			else if ((playerPositionX1 <= enemyPositionX2) && (playerPositionX2 >= enemyPositionX1))
+			{
+				xCollision = true;
+			}
+			//check if player collided with enemy, y-axis
+			if ((playerPositionY1 <= enemyPositionY2) && (playerPositionY2 >= enemyPositionY1))
+			{
+				yCollision = true;
+			}
+			//check if player collided with enemy, y-axis part 2
+			else if ((playerPositionY2 >= enemyPositionY1) && (playerPositionY1 <= enemyPositionY2))
+			{
+				yCollision = true;
+			}
+			//collide and add points to player's score
+			if ((xCollision == true) && (yCollision == true))
+			{
+				playerScore += 50;
+				xCollision = false;
+				yCollision = false;
+			}
+
 			//small delay
 			//sceKernelUsleep(100); //wait here for 100 us
 			renderer.RenderLoop();
 		}
+
+		//THREADS*******************************************
+
+		////create array of thread instances
+		//thread t[num_threads];
+
+		////launch a group of threads
+		//for (int i = 0; i < num_threads; ++i)
+		//{
+		//	t[i] = std::thread(call_from_thread, i);
+		//}
+
+		//printf("Launched from the main\n");
+
+		////join the threads with the main thread
+		//for (int i = 0; i < num_threads; ++i)
+		//{
+		//	t[i].join();
+		//}
+
+		////wait here for 10 seconds
+		//::sceKernelSleep(10);
 
 		//tidy up and release handle
 		scePadClose(handle);
