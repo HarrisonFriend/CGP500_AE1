@@ -1,12 +1,12 @@
 ﻿  main.cpp
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(63,24): warning : empty parentheses interpreted as a function declaration [-Wvexing-parse]
-  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(63,24) :  note: remove parentheses to declare a variable
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(366,24): warning : equality comparison result unused [-Wunused-comparison]
-  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(366,24) :  note: use '=' to turn this equality comparison into an assignment
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(371,24): warning : equality comparison result unused [-Wunused-comparison]
-  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(371,24) :  note: use '=' to turn this equality comparison into an assignment
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(376,24): warning : equality comparison result unused [-Wunused-comparison]
-  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(376,24) :  note: use '=' to turn this equality comparison into an assignment
-U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(381,24): warning : equality comparison result unused [-Wunused-comparison]
-  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(381,24) :  note: use '=' to turn this equality comparison into an assignment
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(65,24): warning : empty parentheses interpreted as a function declaration [-Wvexing-parse]
+  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(65,24) :  note: remove parentheses to declare a variable
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(368,24): warning : equality comparison result unused [-Wunused-comparison]
+  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(368,24) :  note: use '=' to turn this equality comparison into an assignment
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(373,24): warning : equality comparison result unused [-Wunused-comparison]
+  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(373,24) :  note: use '=' to turn this equality comparison into an assignment
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(378,24): warning : equality comparison result unused [-Wunused-comparison]
+  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(378,24) :  note: use '=' to turn this equality comparison into an assignment
+U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(383,24): warning : equality comparison result unused [-Wunused-comparison]
+  U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\main.cpp(383,24) :  note: use '=' to turn this equality comparison into an assignment
   Harrison_Friend_CGP500_AE1.vcxproj -> U:\!CGP500 - Console Development\Harrison_Friend_CGP500_AE1\ORBIS_Debug\Harrison_Friend_CGP500_AE1.elf

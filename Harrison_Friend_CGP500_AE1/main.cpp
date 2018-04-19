@@ -1,6 +1,7 @@
 //include header files
 #include "text.h"
 #include "renderer.h"
+//#include "playmp3.h"
 #include <kernel.h>
 #include <user_service.h>
 #include <pad.h>
@@ -8,7 +9,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <thread>
-//#include "playmp3.h"
+#include <iostream>
+
 using namespace Solent;
 
 ////number of threads
@@ -24,7 +26,7 @@ using namespace Solent;
 //	}
 //}
 
-////#define FILENAME_MP3 "/app0/jungle2ch128kbps.mp3
+////MUSIC CODE - can't include source or header files in the project as it breaks the program
 //#define FILENAME_MP3 "/app0/allegro.mp3"
 
 //program entry point
@@ -305,14 +307,14 @@ int main()
 					}
 				}
 				//pause game
-				if (data.buttons & SCE_PAD_BUTTON_START)
+				/*if (data.buttons & SCE_PAD_BUTTON_START)
 				{
-					/*gamePaused = true;
-					while (gamePaused == true)
+					cin.get();
+					if (data.buttons & SCE_PAD_BUTTON_START)
 					{
-
-					}*/
-				}
+						break;
+					}
+				}*/
 				//exit game
 				if (data.buttons & SCE_PAD_BUTTON_CIRCLE)
 				{
